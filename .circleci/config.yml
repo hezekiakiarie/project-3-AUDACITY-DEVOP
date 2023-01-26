@@ -239,12 +239,12 @@ jobs:
     steps:
       - checkout
       - install_awscli
-      - run : 
-          name: install_awscli
-          command: |
-              curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-              # unzip awscliv2.zip
-              # sudo ./aws/install 
+      # - run : 
+      #     name: install_awscli
+      #     command: |
+      #         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      #         # unzip awscliv2.zip
+      #         # sudo ./aws/install 
       - run : 
             name: Ensure back-end infrastructure exist
             command: |
@@ -286,7 +286,7 @@ jobs:
     - install_ansible
     - install_awscli
     - add_ssh_keys:
-       fingerprints: ["1e:6f:ee:0d:4c:e9:2b:ef:42:23:8a:d0:ba:3e:4f:f2"] 
+       fingerprints: ["81:fc:3a:b5:d4:68:fb:99:89:9d:33:5a:ce:90:27:fc"] 
     - attach_workspace:
         at: ~/
     - run:
