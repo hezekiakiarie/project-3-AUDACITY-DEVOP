@@ -144,24 +144,19 @@ jobs:
 
 
   build-backend:
-    docker:
-      - image: cimg/node:13.8.0
+    executor: node
     steps:
       - checkout
-      - restore_cache:
-          key: backend-deps-{{ checksum "backend/package-lock.json" }}
+      - attach_workspace:
+          at: .
       - run:
-          name: Back-end build
-          command: |
-            cd backend 
-            # sudo npm install -g typescript
-            # npm i ts-node typescript
-            npm install
-            npm run build
-      ##- install_nodemodules      
-      - save_cache:
-          paths: [backend/node_modules]
-          key: backend-deps-{{ checksum "backend/package-lock.json" }}
+          name: npm run build
+          working_directory: ./backend
+          command: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - backend/dist
 
   test-frontend:
     docker:
