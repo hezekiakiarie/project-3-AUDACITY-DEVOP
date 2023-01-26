@@ -106,7 +106,7 @@ commands:
             name: Revert migrations
             when: on_fail
             command: |
-              SUCCESS=$(curl --insecure  https://kvdb.io/${KVDB_BUCKET}/migration_<< parameters.Workflow_ID >>)
+              SUCCESS=$(curl --insecure  https://E3kNPdNRUVdGYPRdbB69BX/migration_<< parameters.Workflow_ID >>)
 
               # Logic for reverting the database state
               if (( $SUCCESS == 1 ));
@@ -286,7 +286,7 @@ jobs:
     - install_ansible
     - install_awscli
     - add_ssh_keys:
-       fingerprints: ["1e:6f:ee:0d:4c:e9:2b:ef:42:23:8a:d0:ba:3e:4f:f2"] 
+       fingerprints: ["81:fc:3a:b5:d4:68:fb:99:89:9d:33:5a:ce:90:27:fc"] 
     - attach_workspace:
         at: ~/
     - run:
@@ -318,7 +318,7 @@ jobs:
           command: |
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
-              curl https://kvdb.io/${KVDB_BUCKET}/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
+              curl https://kvdb.io/E3kNPdNRUVdGYPRdbB69BX/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
             fi
       #- destroy-environment
       # - revert-migrations
@@ -390,7 +390,7 @@ jobs:
       - install_nodejs
       - install_ansible
       - add_ssh_keys:
-          fingerprints: ["d1:87:0c:4e:b9:34:1e:43:c8:c9:2a:84:df:5d:81:5c:f7:f2:34:a9"]
+          fingerprints: ["81:fc:3a:b5:d4:68:fb:99:89:9d:33:5a:ce:90:27:fc"]
       - attach_workspace:
           at: ~/
       - restore_cache:
